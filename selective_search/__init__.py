@@ -1,1 +1,1 @@
-from .engine import selective_search
+from .core import selective_search
