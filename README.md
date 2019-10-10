@@ -1,6 +1,7 @@
 # Selective Search
 
 [![PyPI](https://img.shields.io/pypi/v/selective_search)](https://pypi.org/project/selective-search/)
+[![Travis (.org)](https://img.shields.io/travis/ChenjieXu/selective-search)](https://travis-ci.org/ChenjieXu/selective_search)
 [![Codacy grade](https://img.shields.io/codacy/grade/8d5b9ce875004d458bdf570f4d719472)](https://www.codacy.com/manual/ChenjieXu/selective_search)
 
 This is a full implementation of selective search in Python. The implementation is typically based on this paper[[1]](#Uijlings). It have three selective search modes according to various diversification strategies as in the paper.

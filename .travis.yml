@@ -1,0 +1,9 @@
+language: python
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install selective-search
+# command to run tests
+# TODO: support pytest
+script:
+  - python examples/example.py
