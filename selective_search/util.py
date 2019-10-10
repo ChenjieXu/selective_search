@@ -54,7 +54,7 @@ def switch_color_space(img, target):
         raise "{} is not suported.".format(target)
 
 def load_strategy(mode):
-    # TODO: Add support for customizing
+    # TODO: Add mode sanity check
 
     cfg = {
         "single": {
@@ -74,8 +74,9 @@ def load_strategy(mode):
         }
     }
 
-    if mode not in cfg.keys():
-        raise "{} mode is not supported".format(mode)
+    if isinstance(mode, dict):
+        cfg['manual'] = mode
+        mode = 'manual'
 
     colors, ks, sims = cfg[mode]['colors'], cfg[mode]['ks'], cfg[mode]['sims']
 
