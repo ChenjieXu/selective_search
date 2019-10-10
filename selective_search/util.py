@@ -51,7 +51,7 @@ def switch_color_space(img, target):
         return rgb2hsv(img)[:,:,0]
     
     else:
-        assert "{} is not suported.".format(target)
+        raise "{} is not suported.".format(target)
         
 def load_strategy(mode):
     # TODO: Add support for customizing
@@ -59,7 +59,8 @@ def load_strategy(mode):
     with open('./selective_search/mode.cfg','r') as f:
         cfg = json.load(f)
         
-    assert mode in cfg.keys(), "{} mode is not supported".format(mode)
+    if mode not in cfg.keys():
+        raise "{} mode is not supported".format(mode)
         
     colors, ks, sims = cfg[mode]['colors'], cfg[mode]['ks'], cfg[mode]['sims']
     
