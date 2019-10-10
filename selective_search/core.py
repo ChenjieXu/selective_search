@@ -86,3 +86,30 @@ def selective_search(img, mode='single', random=False):
     boxes = list(dict.fromkeys(boxes))
 
     return boxes
+
+def box_filter(boxes, min_size=20, max_ratio=None, topN=None):
+    proposal = []
+
+    for box in boxes:
+        # Calculate width and height of the box
+        w, h = box[2] - box[0], box[3] - box[1]
+
+        # Filter for size
+        if w < min_size or h < min_size:
+            continue
+
+        # Filter for box ratio
+        if max_ratio:
+            if w / h > max_ratio or h / w > max_ratio:
+                continue
+
+        proposal.append(box)
+
+    if topN:
+        if topN <= len(proposal):
+            return proposal[:topN]
+        else:
+            return proposal
+    else:
+        return proposal
+

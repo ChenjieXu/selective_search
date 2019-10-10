@@ -56,8 +56,23 @@ def switch_color_space(img, target):
 def load_strategy(mode):
     # TODO: Add support for customizing
 
-    with open('./selective_search/mode.cfg','r') as f:
-        cfg = json.load(f)
+    cfg = {
+        "single": {
+            "ks": [100],
+            "colors": ["HSV"],
+            "sims": ["CTSF"]
+        },
+        "fast": {
+            "ks": [50, 100],
+            "colors": ["HSV", "Lab"],
+            "sims": ["CTSF", "TSF"]
+        },
+        "quality": {
+            "ks": [50, 100, 150, 300],
+            "colors": ["HSV", "Lab", "I", "rgI", "H"],
+            "sims": ["CTSF", "TSF", "F", "S"]
+        }
+    }
 
     if mode not in cfg.keys():
         raise "{} mode is not supported".format(mode)
