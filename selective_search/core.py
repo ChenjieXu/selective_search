@@ -1,4 +1,3 @@
-from random import random
 from joblib import Parallel, delayed
 
 from .util import oversegmentation, switch_color_space, load_strategy
@@ -17,7 +16,7 @@ def selective_search_one(img, color_space, k, sim_strategy):
             Threshold parameter for starting regions
         sim_stategy : string
             Combinations of similarity measures
-            
+
     Returns
     -------
         boxes : list
@@ -25,13 +24,13 @@ def selective_search_one(img, color_space, k, sim_strategy):
         priority: list
             Small priority number indicates higher position in the hierarchy
     '''
-        
+
     # Generate starting locations
     img_seg = oversegmentation(img, k)
 
     # convert RGB image to target color space
     img = switch_color_space(img, color_space)
-    
+
     # Initialze hierarchical grouping
     S = HierarchicalGrouping(img, img_seg, sim_strategy)
 
@@ -56,7 +55,7 @@ def selective_search_one(img, color_space, k, sim_strategy):
 
     # generate priority for boxes
     priorities = list(range(1, len(boxes)+1))
-    
+
     return boxes, priorities
 
 
@@ -64,18 +63,19 @@ def selective_search(img, mode='single', random=False):
     """
         Selective Search in Python
     """
+
     # load selective search strategy
     strategy = load_strategy(mode)
-    
+
     # Excecute selective search in parallel
     vault = Parallel(n_jobs=-1)(delayed(selective_search_one)(img, color, k, sim) for (color, k, sim) in strategy)
 
     boxes = [x for x,_ in vault]
     priorities = [y for _, y in vault]
-    
-    boxes = [item for sublist in boxes for item in sublist]    
+
+    boxes = [item for sublist in boxes for item in sublist]
     priorities = [item for sublist in priorities for item in sublist]
-    
+
     if random:
         # Do pseudo random sorting as in paper
         rand_list = [random() for i in range(len(priorities))]
@@ -84,5 +84,5 @@ def selective_search(img, mode='single', random=False):
 
     # drop duplicates by maintaining order
     boxes = list(dict.fromkeys(boxes))
-    
+
     return boxes
