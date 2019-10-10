@@ -17,10 +17,15 @@ setup(
     keywords='rcnn',
     packages=find_packages(),
     license='MIT',
-    classifiers=[  
+    classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Education',
+        'Intended Audience :: Science/Research',
     ],
     install_requires=reqs.strip().split('\n'),
 )
