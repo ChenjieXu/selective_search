@@ -36,16 +36,14 @@ def switch_color_space(img, target):
     elif target == 'I':
         return rgb2grey(img)
 
-    elif target == 'rgI':
-        img_rgI = np.zeros(img.shape)
-        # r
-        img_rgI[:,:,0] = img[:,:,0] / np.sum(img[:,:,0])
-        # g
-        img_rgI[:,:,1] = img[:,:,1] / np.sum(img[:,:,1])
-        # I
-        img_rgI[:,:,2] = rgb2grey(img)
+    elif target == 'rgb':
+        img = img / np.sum(img, axis=0)
+        return img
 
-        return img_rgI
+    elif target == 'rgI':
+        img = img / np.sum(img, axis=0)
+        img[:,:,2] = rgb2grey(img)
+        return img
 
     elif target == 'H':
         return rgb2hsv(img)[:,:,0]
