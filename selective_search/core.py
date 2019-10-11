@@ -25,11 +25,11 @@ def selective_search_one(img, color_space, k, sim_strategy):
             Small priority number indicates higher position in the hierarchy
     '''
 
-    # Generate starting locations
-    img_seg = oversegmentation(img, k)
-
     # convert RGB image to target color space
     img = switch_color_space(img, color_space)
+
+    # Generate starting locations
+    img_seg = oversegmentation(img, k)
 
     # Initialze hierarchical grouping
     S = HierarchicalGrouping(img, img_seg, sim_strategy)
