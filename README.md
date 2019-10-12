@@ -1,5 +1,5 @@
 # Selective Search
-
+[![GitHub release](https://img.shields.io/github/v/release/ChenjieXu/selective_search?include_prereleases)](https://github.com/ChenjieXu/selective_search/releases/)
 [![PyPI](https://img.shields.io/pypi/v/selective_search)](https://pypi.org/project/selective-search/)
 [![Travis Build Status](https://travis-ci.org/ChenjieXu/selective_search.svg?branch=master)](https://travis-ci.org/ChenjieXu/selective_search)
 [![Codacy grade](https://img.shields.io/codacy/grade/8d5b9ce875004d458bdf570f4d719472)](https://www.codacy.com/manual/ChenjieXu/selective_search)
@@ -44,24 +44,18 @@ Three modes correspond to various combinations of diversification strategies. Th
 | fast    | HSV, Lab            | CTSF, TSF           | 50, 100              | 8                      |
 | quality | HSV, Lab, rgI, H, I | CTSF, TSF, F, S     | 50, 100, 150, 300    | 80                     |
 
-* **Color Space** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L23)
+*  **Color Space** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L23)  
+  Initial oversegmentation algorithm and our subsequent grouping algorithm are performed in this colour space.
 
-  Initial oversegmentation algorithm and our subsequent grouping algorithm are performed in this colour
-space.
-
-* **Similarity Measure** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/measure.py#L101)
-
+*  **Similarity Measure** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/measure.py#L101)  
   'CTSF' means the similarity measure is aggregate of color similarity, texture similarity, size similarity, and fill similarity.
   
-* **Starting Region** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L9)
-
+*  **Starting Region** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L9)  
   A parameter of initial grouping algorithm[[2]](#Felzenszwalb), which yields high quality starting locations efficiently. A larger k causes a preference for larger components of initial strating regions.
-  
 
 ### Random
 
 If random set to True, function will carry out pseudo random sorting. It only alters sequences of bounding boxes, instead of locations, which prevents heavily emphasis on large regions as combing proposals from up to 80 different strategies[[1]](#Uijlings). This only has a significant impact when selecting a subset of region proposals with high rankings, as in RCNN.
-
 
 ## References
 

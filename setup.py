@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="selective_search",
-    version="0.1.0-alpha",
+    version="0.1.1",
     url="https://github.com/ChenjieXu/selective_search",
     description="Selective Search in Python",
     long_description=readme,
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     license='MIT',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Topic :: Software Development :: Libraries',

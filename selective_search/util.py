@@ -1,5 +1,4 @@
 import numpy as np
-import json
 from itertools import product
 
 from skimage.segmentation import felzenszwalb
