@@ -8,10 +8,11 @@ with open('requirements.txt') as f:
 
 setup(
     name="selective_search",
-    version="0.1.0",
+    version="0.1.0-alpha",
     url="https://github.com/ChenjieXu/selective_search",
     description="Selective Search in Python",
     long_description=readme,
+    long_description_content_type="text/markdown",
     author="Chenjie Xu",
     author_email="cxuscience@gmail.com",
     keywords='rcnn',
