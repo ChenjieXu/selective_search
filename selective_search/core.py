@@ -59,7 +59,7 @@ def selective_search_one(img, color_space, k, sim_strategy):
     return boxes, priorities
 
 
-def selective_search(img, mode='single', random=False):
+def selective_search(img, mode='single', random_sort=False):
     """
         Selective Search in Python
     """
@@ -76,7 +76,7 @@ def selective_search(img, mode='single', random=False):
     boxes = [item for sublist in boxes for item in sublist]
     priorities = [item for sublist in priorities for item in sublist]
 
-    if random:
+    if random_sort:
         # Do pseudo random sorting as in paper
         rand_list = [random() for i in range(len(priorities))]
         priorities = [p * r for p, r in zip(priorities, rand_list)]
