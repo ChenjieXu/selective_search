@@ -78,7 +78,7 @@ def selective_search(img, mode='single', random=False):
 
     if random:
         # Do pseudo random sorting as in paper
-        rand_list = [random() for i in range(len(priorities))]
+        rand_list = [random for i in range(len(priorities))]
         priorities = [p * r for p, r in zip(priorities, rand_list)]
         boxes = [b for _, b in sorted(zip(priorities, boxes))]
 
