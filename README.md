@@ -28,7 +28,7 @@ from selective_search import selective_search
 image = skimage.io.imread('path/to/image')
 
 # Run selective search using single mode
-boxes = selective_search(image, mode='single', random=False)
+boxes = selective_search(image, mode='single', random_sort=False)
 ```
 For detailed examples, refer [this](https://github.com/ChenjieXu/selective_search/tree/master/examples) part of the repository.
 
@@ -53,9 +53,9 @@ Three modes correspond to various combinations of diversification strategies. Th
 *  **Starting Region** [[Source Code]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L9)  
   A parameter of initial grouping algorithm[[2]](#Felzenszwalb), which yields high quality starting locations efficiently. A larger k causes a preference for larger components of initial strating regions.
 
-### Random
+### Random Sort
 
-If random set to True, function will carry out pseudo random sorting. It only alters sequences of bounding boxes, instead of locations, which prevents heavily emphasis on large regions as combing proposals from up to 80 different strategies[[1]](#Uijlings). This only has a significant impact when selecting a subset of region proposals with high rankings, as in RCNN.
+If random_sort set to True, function will carry out pseudo random sorting. It only alters sequences of bounding boxes, instead of locations, which prevents heavily emphasis on large regions as combing proposals from up to 80 different strategies[[1]](#Uijlings). This only has a significant impact when selecting a subset of region proposals with high rankings, as in RCNN.
 
 ## References
 
