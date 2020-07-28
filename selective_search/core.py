@@ -1,7 +1,10 @@
+from random import random
+
 from joblib import Parallel, delayed
 
-from .util import oversegmentation, switch_color_space, load_strategy
 from .structure import HierarchicalGrouping
+from .util import load_strategy, oversegmentation, switch_color_space
+
 
 def selective_search_one(img, color_space, k, sim_strategy):
     '''
@@ -112,4 +115,3 @@ def box_filter(boxes, min_size=20, max_ratio=None, topN=None):
             return proposal
     else:
         return proposal
-
