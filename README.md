@@ -57,6 +57,11 @@ Three modes correspond to various combinations of diversification strategies. Th
 
 If random_sort set to True, function will carry out pseudo random sorting. It only alters sequences of bounding boxes, instead of locations, which prevents heavily emphasis on large regions as combing proposals from up to 80 different strategies[[1]](#Uijlings). This only has a significant impact when selecting a subset of region proposals with high rankings, as in RCNN.
 
+## TODOs
+
+ - add quality measurement
+ - optimize data structure for neighbour searching
+ 
 ## References
 
 \[1\] <a name="Uijlings"> [J. R. R. Uijlings et al., Selective Search for Object Recognition, IJCV, 2013](https://ivi.fnwi.uva.nl/isis/publications/bibtexbrowser.php?key=UijlingsIJCV2013&bib=all.bib)  
