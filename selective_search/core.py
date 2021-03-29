@@ -42,11 +42,11 @@ def selective_search_one(img, color_space, k, sim_strategy):
 
     # Start hierarchical grouping
     while not S.is_empty():
-        i,j = S.get_highest_similarity()
+        i, j = S.get_highest_similarity()
 
-        S.merge_region(i,j)
+        S.merge_region(i, j)
 
-        S.remove_similarities(i,j)
+        S.remove_similarities(i, j)
 
         S.calculate_similarity_for_new_region()
 
@@ -57,7 +57,7 @@ def selective_search_one(img, color_space, k, sim_strategy):
     boxes = list(dict.fromkeys(boxes))
 
     # generate priority for boxes
-    priorities = list(range(1, len(boxes)+1))
+    priorities = list(range(1, len(boxes) + 1))
 
     return boxes, priorities
 
@@ -73,7 +73,7 @@ def selective_search(img, mode='single', random_sort=False):
     # Excecute selective search in parallel
     vault = Parallel(n_jobs=-1)(delayed(selective_search_one)(img, color, k, sim) for (color, k, sim) in strategy)
 
-    boxes = [x for x,_ in vault]
+    boxes = [x for x, _ in vault]
     priorities = [y for _, y in vault]
 
     boxes = [item for sublist in boxes for item in sublist]
@@ -89,6 +89,7 @@ def selective_search(img, mode='single', random_sort=False):
     boxes = list(dict.fromkeys(boxes))
 
     return boxes
+
 
 def box_filter(boxes, min_size=20, max_ratio=None, topN=None):
     proposal = []

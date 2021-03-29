@@ -1,8 +1,8 @@
-import numpy as np
 from itertools import product
 
-from skimage.segmentation import felzenszwalb
+import numpy as np
 from skimage.color import rgb2hsv, rgb2lab, rgb2grey
+from skimage.segmentation import felzenszwalb
 
 
 def oversegmentation(img, k):
@@ -41,14 +41,15 @@ def switch_color_space(img, target):
 
     elif target == 'rgI':
         img = img / np.sum(img, axis=0)
-        img[:,:,2] = rgb2grey(img)
+        img[:, :, 2] = rgb2grey(img)
         return img
 
     elif target == 'H':
-        return rgb2hsv(img)[:,:,0]
+        return rgb2hsv(img)[:, :, 0]
 
     else:
         raise "{} is not suported.".format(target)
+
 
 def load_strategy(mode):
     # TODO: Add mode sanity check

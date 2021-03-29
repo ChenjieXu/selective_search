@@ -1,6 +1,7 @@
 import numpy as np
 from skimage.feature import local_binary_pattern
 
+
 def _calculate_color_sim(ri, rj):
     """
         Calculate color similarity using histogram intersection
@@ -33,7 +34,8 @@ def _calculate_fill_sim(ri, rj, imsize):
         fill(ri, rj) = 1 − [size(BBij) − size(ri) − size(ri)] / size(image)
     """
 
-    bbsize = (max(ri['box'][2], rj['box'][2]) - min(ri['box'][0], rj['box'][0])) * (max(ri['box'][3], rj['box'][3]) - min(ri['box'][1], rj['box'][1]))
+    bbsize = (max(ri['box'][2], rj['box'][2]) - min(ri['box'][0], rj['box'][0])) * (
+                max(ri['box'][3], rj['box'][3]) - min(ri['box'][1], rj['box'][1]))
 
     return 1.0 - (bbsize - ri['size'] - rj['size']) / imsize
 
@@ -64,7 +66,6 @@ def calculate_color_hist(mask, img):
 
 
 def generate_lbp_image(img):
-
     if len(img.shape) == 2:
         img = img.reshape(img.shape[0], img.shape[1], 1)
     channel_nums = img.shape[2]
@@ -72,7 +73,7 @@ def generate_lbp_image(img):
     lbp_img = np.zeros(img.shape)
     for channel in range(channel_nums):
         layer = img[:, :, channel]
-        lbp_img[:, :,channel] = local_binary_pattern(layer, 8, 1)
+        lbp_img[:, :, channel] = local_binary_pattern(layer, 8, 1)
 
     return lbp_img
 

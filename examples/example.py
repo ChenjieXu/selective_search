@@ -1,4 +1,5 @@
 import skimage
+
 import selective_search
 
 image = skimage.data.astronaut()

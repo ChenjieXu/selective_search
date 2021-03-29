@@ -1,6 +1,7 @@
 import numpy as np
-from skimage.segmentation import find_boundaries
 from scipy.ndimage import find_objects
+from skimage.segmentation import find_boundaries
+
 from . import measure
 
 
@@ -16,9 +17,9 @@ class HierarchicalGrouping(object):
         lbp_img = measure.generate_lbp_image(self.img)
         for label in self.labels:
             size = (self.img_seg == 1).sum()
-            region_slice = find_objects(self.img_seg==label)[0]
-            box = tuple([region_slice[i].start for i in (1,0)] +
-                         [region_slice[i].stop for i in (1,0)])
+            region_slice = find_objects(self.img_seg == label)[0]
+            box = tuple([region_slice[i].start for i in (1, 0)] +
+                        [region_slice[i].stop for i in (1, 0)])
 
             mask = self.img_seg == label
             color_hist = measure.calculate_color_hist(mask, self.img)
@@ -31,18 +32,16 @@ class HierarchicalGrouping(object):
                 'texture_hist': texture_hist
             }
 
-
     def build_region_pairs(self):
         self.s = {}
         for i in self.labels:
             neighbors = self._find_neighbors(i)
             for j in neighbors:
                 if i < j:
-                    self.s[(i,j)] = measure.calculate_sim(self.regions[i],
-                                             self.regions[j],
-                                             self.img.size,
-                                             self.sim_strategy)
-
+                    self.s[(i, j)] = measure.calculate_sim(self.regions[i],
+                                                           self.regions[j],
+                                                           self.img.size,
+                                                           self.sim_strategy)
 
     def _find_neighbors(self, label):
         """
@@ -76,18 +75,18 @@ class HierarchicalGrouping(object):
 
         new_size = ri['size'] + rj['size']
         new_box = (min(ri['box'][0], rj['box'][0]),
-                  min(ri['box'][1], rj['box'][1]),
-                  max(ri['box'][2], rj['box'][2]),
-                  max(ri['box'][3], rj['box'][3]))
+                   min(ri['box'][1], rj['box'][1]),
+                   max(ri['box'][2], rj['box'][2]),
+                   max(ri['box'][3], rj['box'][3]))
         value = {
             'box': new_box,
             'size': new_size,
             'color_hist':
                 (ri['color_hist'] * ri['size']
-                + rj['color_hist'] * rj['size']) / new_size,
+                 + rj['color_hist'] * rj['size']) / new_size,
             'texture_hist':
                 (ri['texture_hist'] * ri['size']
-                + rj['texture_hist'] * rj['size']) / new_size,
+                 + rj['texture_hist'] * rj['size']) / new_size,
         }
 
         self.regions[new_label] = value
@@ -117,10 +116,10 @@ class HierarchicalGrouping(object):
 
         for j in neighbors:
             # i is larger than j, so use (j,i) instead
-            self.s[(j,i)] = measure.calculate_sim(self.regions[i],
-                                          self.regions[j],
-                                          self.img.size,
-                                          self.sim_strategy)
+            self.s[(j, i)] = measure.calculate_sim(self.regions[i],
+                                                   self.regions[j],
+                                                   self.img.size,
+                                                   self.sim_strategy)
 
     def is_empty(self):
         return True if not self.s.keys() else False
