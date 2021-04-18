@@ -4,10 +4,13 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/ChenjieXu/selective_search?include_prereleases)](https://github.com/ChenjieXu/selective_search/releases/)
 [![PyPI](https://img.shields.io/pypi/v/selective_search)](https://pypi.org/project/selective-search/)
+[![Conda](https://img.shields.io/conda/v/chenjiexu/selective_search)](https://anaconda.org/ChenjieXu/selective_search)
+
 [![Travis Build Status](https://travis-ci.org/ChenjieXu/selective_search.svg?branch=master)](https://travis-ci.org/ChenjieXu/selective_search)
 [![Codacy grade](https://img.shields.io/codacy/grade/8d5b9ce875004d458bdf570f4d719472)](https://www.codacy.com/manual/ChenjieXu/selective_search)
 
-这是选择性搜索用Python的完整实现。 该实现基于本文[[1]](#Uijlings). 如论文描述的，为了达到多样化策略的目的，本方法具有三种模式。
+这是选择性搜索用Python的完整实现。 我仔细阅读了相关论文[[1]](#Uijlings)[[2]](#Felzenszwalb)[[3]](#koen)和作者MATLAB实现，相较于其他实现，本方法原汁原味的展示了原论文的思想。
+而且本方法逻辑清晰，注释丰富，非常适合作为教学目的，让刚刚进入视觉领域的人了解选择性搜索的基本原理并锻炼代码阅读能力。
 
 ## 安装
 
@@ -23,6 +26,12 @@ $ pip install selective-search
 $ git clone https://github.com/ChenjieXu/selective_search.git
 $ cd selective_search
 $ python setup.py install
+```
+
+从[Anaconda](https://anaconda.org/ChenjieXu/selective_search) 安装:
+
+```bash
+conda install -c chenjiexu selective_search
 ```
 
 ## 快速上手
@@ -57,7 +66,7 @@ boxes = selective_search(image, mode='single', random_sort=False)
 
 * **相似性度量** [[源码]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/measure.py#L101)  
   “CTSF”表示相似性度量是颜色相似性，纹理相似性，大小相似性和填充相似性的集合。
-   
+
 * **起始区域** [[源码]](https://github.com/ChenjieXu/selective_search/blob/master/selective_search/util.py#L9)  
   初始分组算法的参数[[2]](#Felzenszwalb), 有效地产生高质量的起始位置。 较大的k会导致分割倾向于较大的初始条纹区域。
 
@@ -65,11 +74,6 @@ boxes = selective_search(image, mode='single', random_sort=False)
 
 如果把随机排序设置为真， 函数将执行伪随机排序。 它仅更改边界框的顺序，而不是位置，这避免了在梳理多达80种不同策略的提案时过分强调大区域[[1]](#Uijlings)。
 如RCNN中的，这仅在选择具有较高排名的区域提案的子集时才产生重大影响。
-
-## 待办事项
-
-- 添加评价方法
-- 为邻域搜索优化数据结构
 
 ## 参考
 

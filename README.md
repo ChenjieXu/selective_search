@@ -4,12 +4,16 @@ English | [简体中文](README_CN.md)
 
 [![GitHub release](https://img.shields.io/github/v/release/ChenjieXu/selective_search?include_prereleases)](https://github.com/ChenjieXu/selective_search/releases/)
 [![PyPI](https://img.shields.io/pypi/v/selective_search)](https://pypi.org/project/selective-search/)
+[![Conda](https://img.shields.io/conda/v/chenjiexu/selective_search)](https://anaconda.org/ChenjieXu/selective_search)
+
 [![Travis Build Status](https://travis-ci.org/ChenjieXu/selective_search.svg?branch=master)](https://travis-ci.org/ChenjieXu/selective_search)
 [![Codacy grade](https://img.shields.io/codacy/grade/8d5b9ce875004d458bdf570f4d719472)](https://www.codacy.com/manual/ChenjieXu/selective_search)
 
-This is a full implementation of selective search in Python. The implementation is typically based on this
-paper[[1]](#Uijlings). It has three selective search modes according to various diversification strategies as in the
-paper.
+This is a complete implementation of selective search in Python. I thoroughly read the related
+papers [[1]](#Uijlings)[[2]](#Felzenszwalb)[[3]](#koen) and the author’s MATLAB implementation. Compared with other
+implementations, my method is authentically shows the idea of the original paper. Moreover, this method has clear logic
+and rich annotations, which is very suitable for teaching purposes, allowing people who have just entered the CV field
+to understand the basic principles of selective search and exercise code reading ability.
 
 ## Installation
 
@@ -25,6 +29,12 @@ It is also possible to install the latest version from [Github source](https://g
 $ git clone https://github.com/ChenjieXu/selective_search.git
 $ cd selective_search
 $ python setup.py install
+```
+
+Install from [Anaconda](https://anaconda.org/ChenjieXu/selective_search):
+
+```bash
+conda install -c chenjiexu selective_search
 ```
 
 ## Quick Start
@@ -77,11 +87,6 @@ If random_sort set to True, function will carry out pseudo random sorting. It on
 instead of locations, which prevents heavily emphasis on large regions as combing proposals from up to 80 different
 strategies[[1]](#Uijlings). This only has a significant impact when selecting a subset of region proposals with high
 rankings, as in RCNN.
-
-## TODOs
-
-- add quality measurement
-- optimize data structure for neighbour searching
 
 ## References
 
