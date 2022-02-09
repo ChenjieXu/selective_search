@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='selective_search',
-    version='1.0.0',
+    version='1.1.0',
     url='https://github.com/ChenjieXu/selective_search',
     description='Selective Search in Python',
     long_description=readme,
