@@ -1,9 +1,10 @@
+import io
 from setuptools import setup, find_packages
 
-with open('README.md', encoding='utf8') as f:
+with io.open('README.md', encoding='utf8') as f:
     readme = f.read()
 
-with open('requirements.txt') as f:
+with io.open('requirements.txt') as f:
     reqs = f.read()
 
 setup(
