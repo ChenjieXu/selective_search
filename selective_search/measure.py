@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 import numpy as np
 from skimage.feature import local_binary_pattern
 
@@ -35,7 +36,7 @@ def _calculate_fill_sim(ri, rj, imsize):
     """
 
     bbsize = (max(ri['box'][2], rj['box'][2]) - min(ri['box'][0], rj['box'][0])) * (
-                max(ri['box'][3], rj['box'][3]) - min(ri['box'][1], rj['box'][1]))
+        max(ri['box'][3], rj['box'][3]) - min(ri['box'][1], rj['box'][1]))
 
     return 1.0 - (bbsize - ri['size'] - rj['size']) / imsize
 
