@@ -16,12 +16,12 @@ class HierarchicalGrouping(object):
         self.regions = {}
         lbp_img = measure.generate_lbp_image(self.img)
         for label in self.labels:
-            size = (self.img_seg == 1).sum()
-            region_slice = find_objects(self.img_seg == label)[0]
+            mask = self.img_seg == label
+            size = mask.sum()
+            region_slice = find_objects(mask, max_label=1)[0]
             box = tuple([region_slice[i].start for i in (1, 0)] +
                         [region_slice[i].stop for i in (1, 0)])
 
-            mask = self.img_seg == label
             color_hist = measure.calculate_color_hist(mask, self.img)
             texture_hist = measure.calculate_texture_hist(mask, lbp_img)
 
